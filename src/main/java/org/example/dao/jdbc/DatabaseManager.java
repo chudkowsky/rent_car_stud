@@ -16,9 +16,9 @@ public class DatabaseManager {
         return DatabaseManager.instace;
     }
     private DatabaseManager(){
-        this.url = "jdbc:mysql://localhost:3306/spring2024";
-        this.user = "root";
-        this.password = "***";
+        this.url = "jdbc:postgresql://flora.db.elephantsql.com/egtksxvk";
+        this.user = "egtksxvk";
+        this.password = "TIuorzQgCRypvSIJJ84kUuny6cYPZ0ZP";
     }
 
     public Connection getConnection() throws SQLException {

@@ -6,6 +6,7 @@ import org.example.dao.IVehicleRepository;
 import org.example.dao.jdbc.JdbcUserRepository;
 import org.example.dao.jdbc.JdbcVehicleRepository;
 import org.example.model.Car;
+import org.example.model.Motorcycle;
 import org.example.model.User;
 import org.example.model.Vehicle;
 
@@ -55,19 +56,47 @@ public class App {
                     user = iur.getUser(user.getLogin());
                     break;
                 case "2":
-                    System.out.println("function for return car");
+                    System.out.println("plates:");
+                    String plate2 = scanner.nextLine();
+                    ivr.returnVehicle(plate2,user.getLogin());
+                    user = iur.getUser(user.getLogin());
                     break;
                 case "6":
                     System.out.println("add car (only) separator is ; ");
-                    ////Motorcycle(String brand, String model, int year, double price, String plate, String category)
+
                     String line = scanner.nextLine();
                     String[] arr = line.split(";");
-                    ivr.addVehicle(
-                            new Car(arr[0],
-                                    arr[1],
-                                    Integer.parseInt(arr[2]),
-                                    Double.parseDouble(arr[3]),
-                                    arr[4]));
+                    if(arr.length==5){
+                        ivr.addVehicle(
+                                new Car(arr[0],
+                                        arr[1],
+                                        Integer.parseInt(arr[2]),
+                                        Double.parseDouble(arr[3]),
+                                        arr[4]));}
+                    else if(arr.length==6){
+                        ivr.addVehicle(
+                                new Motorcycle(arr[0],
+                                        arr[1],
+                                        Integer.parseInt(arr[2]),
+                                        Double.parseDouble(arr[3]),
+                                        arr[4],
+                                        arr[5]));
+                    }else {
+                        System.out.println("Bledne dane!");
+                    }
+                    break;
+                case "7":
+                    System.out.println("remove car:");
+                    String  removePlate = scanner.nextLine();
+                    ivr.removeVehicle(removePlate);
+                    break;
+                case "8":
+                    System.out.println("add user (only) separator is ; ");
+                    String line2 = scanner.nextLine();
+                    String[] arr2 = line2.split(";");
+                    iur.addUser(
+                            new User(arr2[0],
+                                    Authenticator.hashPassword(arr2[1])));
                     break;
                 case "9":
                     System.out.println("remove user:");
