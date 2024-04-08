@@ -96,6 +96,7 @@ public class Vehicle {
                 .append(this.plate)
                 .append(",")
                 .append(this.rent)
+                .append("\n")
                 .toString();
     }
 }
