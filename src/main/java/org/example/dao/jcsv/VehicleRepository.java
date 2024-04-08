@@ -4,6 +4,7 @@ import org.example.dao.IVehicleRepository;
 import org.example.model.Car;
 import org.example.model.Motorcycle;
 import org.example.model.Vehicle;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -15,18 +16,21 @@ public class VehicleRepository implements IVehicleRepository {
     private static VehicleRepository instance;
     public List<Vehicle> vehicles;
     String file;
-    public static VehicleRepository getInstance(String file){
-        if (VehicleRepository.instance==null){
+
+    public static VehicleRepository getInstance(String file) {
+        if (VehicleRepository.instance == null) {
             instance = new VehicleRepository(file);
 
         }
         return instance;
     }
+
     private VehicleRepository(String file) {
         vehicles = new ArrayList<>();
         this.file = file;
         Load();
     }
+
     public void Load() {
         List<String> record;
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
@@ -41,12 +45,12 @@ public class VehicleRepository implements IVehicleRepository {
                 String model = record.get(2);
                 int year = Integer.parseInt(record.get(3));
                 double price = Double.parseDouble(record.get(4));
-                String plate =  record.get(5);
-                if(record.get(0).equals("Car")){
+                String plate = record.get(5);
+                if (record.get(0).equals("Car")) {
                     vehicles.add(new Car(brand, model, year, price, plate));
-                }else {
-                    String category = record.get(6);
-                    vehicles.add(new Motorcycle(brand, model, year, price, plate,category));
+                } else {
+                    String category = record.get(7);
+                    vehicles.add(new Motorcycle(brand, model, year, price, plate, category));
                 }
             }
         } catch (IOException e) {
@@ -54,6 +58,7 @@ public class VehicleRepository implements IVehicleRepository {
             // Consider what to do here. Maybe initialize users as an empty list?
         }
     }
+
     public void Save() {
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(file, false));

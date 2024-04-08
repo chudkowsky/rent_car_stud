@@ -11,10 +11,10 @@ public class JdbcUserRepository implements IUserRepository {
     private static JdbcUserRepository instance;
     private final DatabaseManager databaseManager;
 
-    private static String GET_ALL_USERS_SQL = "SELECT login, password, role, rentedPlate FROM tuser";
-    private static String GET_USER_SQL = "SELECT * FROM tuser WHERE login LIKE ?";
-    private static String ADD_USER_SQL = "INSERT INTO tuser (login, password, role, rentedPlate) VALUES (?,?,?,?)";
-    private static String REMOVE_USER_SQL = "DELETE FROM tuser WHERE login LIKE ?";
+    private static final String GET_ALL_USERS_SQL = "SELECT login, password, role, rentedPlate FROM tuser";
+    private static final String GET_USER_SQL = "SELECT * FROM tuser WHERE login LIKE ?";
+    private static final String ADD_USER_SQL = "INSERT INTO tuser (login, password, role, rentedPlate) VALUES (?,?,?,?)";
+    private static final String REMOVE_USER_SQL = "DELETE FROM tuser WHERE login LIKE ?";
 
     private JdbcUserRepository() {
         this.databaseManager = DatabaseManager.getInstance();
@@ -43,8 +43,14 @@ public class JdbcUserRepository implements IUserRepository {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
-            try { if (connection != null) connection.close(); } catch (Exception e) {};
-            try { if (rs != null) rs.close(); } catch (Exception e) {};
+            try {
+                if (connection != null) connection.close();
+            } catch (Exception e) {
+            }
+            try {
+                if (rs != null) rs.close();
+            } catch (Exception e) {
+            }
         }
         return user;
     }

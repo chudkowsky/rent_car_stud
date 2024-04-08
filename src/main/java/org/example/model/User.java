@@ -66,22 +66,20 @@ public class User {
     }
 
     public String toCSV() {
-        return new StringBuilder()
-                .append(this.getClass().getSimpleName())
-                .append(",")
-                .append(this.login)
-                .append(",")
-                .append(this.password)
-                .append(",")
-                .append(this.role)
-                .append(",")
-                .append(this.rentedPlate)
-                .append("\n")
-                .toString();
+        return this.getClass().getSimpleName() +
+                "," +
+                this.login +
+                "," +
+                this.password +
+                "," +
+                this.role +
+                "," +
+                this.rentedPlate +
+                "\n";
     }
 
     public enum Role {
-        USER,ADMIN;
+        USER, ADMIN
     }
 
 }

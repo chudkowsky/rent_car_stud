@@ -9,13 +9,15 @@ public class DatabaseManager {
     private final String url;
     private final String user;
     private final String password;
+
     public static DatabaseManager getInstance() {
-        if(DatabaseManager.instace==null){
-                DatabaseManager.instace = new DatabaseManager();
+        if (DatabaseManager.instace == null) {
+            DatabaseManager.instace = new DatabaseManager();
         }
         return DatabaseManager.instace;
     }
-    private DatabaseManager(){
+
+    private DatabaseManager() {
         this.url = "jdbc:postgresql://flora.db.elephantsql.com/egtksxvk";
         this.user = "egtksxvk";
         this.password = "TIuorzQgCRypvSIJJ84kUuny6cYPZ0ZP";

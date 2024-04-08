@@ -6,8 +6,9 @@ import java.util.Collection;
 
 public interface IVehicleRepository {
 
-    boolean rentVehicle(String plate,String login);
-    boolean returnVehicle(String plate,String login );
+    boolean rentVehicle(String plate, String login);
+
+    boolean returnVehicle(String plate, String login);
 
     boolean addVehicle(Vehicle vehicle);
 

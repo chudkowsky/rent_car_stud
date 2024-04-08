@@ -14,7 +14,7 @@ public class UserRepository implements IUserRepository {
     private static UserRepository instance;
     String file;
 
-    public void Save(){
+    public void Save() {
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(file, false));
             writer.write(users.stream()
@@ -26,7 +26,8 @@ public class UserRepository implements IUserRepository {
             e.printStackTrace();
         }
     }
-    public void Load(){
+
+    public void Load() {
         List<String> record;
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             String line;
@@ -39,9 +40,9 @@ public class UserRepository implements IUserRepository {
                 String login = record.get(1);
                 String password = record.get(2);
                 String rentedPlate = record.get(4);
-                if(record.get(3).equals("ADMIN")){
+                if (record.get(3).equals("ADMIN")) {
                     users.add(new User(login, password, User.Role.ADMIN, rentedPlate));
-                }else {
+                } else {
                     users.add(new User(login, password, User.Role.USER, rentedPlate));
                 }
             }
@@ -50,6 +51,7 @@ public class UserRepository implements IUserRepository {
             // Consider what to do here. Maybe initialize users as an empty list?
         }
     }
+
     @Override
     public User getUser(String login) {
         return users.stream().filter(user -> user.getLogin().equals(login)).findFirst().orElse(null);
@@ -72,17 +74,19 @@ public class UserRepository implements IUserRepository {
         return users;
     }
 
-    public static UserRepository getInstance(String file){
-        if(UserRepository.instance==null){
+    public static UserRepository getInstance(String file) {
+        if (UserRepository.instance == null) {
             UserRepository.instance = new UserRepository(file);
         }
         return instance;
     }
+
     private UserRepository(String file) {
         this.file = file;
         users = new java.util.ArrayList<>();
         Load();
     }
+
     public void setFile(String file) {
         this.file = file;
     }

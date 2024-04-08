@@ -16,8 +16,9 @@ public class Vehicle {
         this.plate = plate;
         this.rent = false;
     }
-    public Vehicle(String brand, String model, int year, double price, String plate,boolean rent) {
-        this(brand,model,year,price,plate);
+
+    public Vehicle(String brand, String model, int year, double price, String plate, boolean rent) {
+        this(brand, model, year, price, plate);
         this.rent = rent;
     }
 
@@ -82,21 +83,18 @@ public class Vehicle {
     }
 
     public String toCSV() {
-        return new StringBuilder()
-                .append(this.getClass().getSimpleName())
-                .append(",")
-                .append(this.brand)
-                .append(",")
-                .append(this.model)
-                .append(",")
-                .append(this.year)
-                .append(",")
-                .append(this.price)
-                .append(",")
-                .append(this.plate)
-                .append(",")
-                .append(this.rent)
-                .append("\n")
-                .toString();
+        return "\n" + this.getClass().getSimpleName() +
+                "," +
+                this.brand +
+                "," +
+                this.model +
+                "," +
+                this.year +
+                "," +
+                this.price +
+                "," +
+                this.plate +
+                "," +
+                this.rent;
     }
 }

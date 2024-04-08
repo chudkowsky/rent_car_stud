@@ -4,7 +4,7 @@ public class Motorcycle extends Vehicle {
 
     String category;
 
-    public Motorcycle(String brand, String model, int year, double price, String plate,String category) {
+    public Motorcycle(String brand, String model, int year, double price, String plate, String category) {
         super(brand, model, year, price, plate);
         this.category = category;
     }
@@ -21,14 +21,13 @@ public class Motorcycle extends Vehicle {
     @Override
     public String toCSV() {
         return super.toCSV() +
-                "," + this.category
-                + "\n";
+                "," + this.category;
     }
 
     @Override
     public String toString() {
         return "Motorcycle{" +
-                super.toString()+
+                super.toString() +
                 " category='" + category + '\'' +
                 '}';
     }
