@@ -68,13 +68,15 @@ public class User {
     public String toCSV() {
         return new StringBuilder()
                 .append(this.getClass().getSimpleName())
-                .append(";")
+                .append(",")
                 .append(this.login)
-                .append(";")
+                .append(",")
                 .append(this.password)
-                .append(";")
+                .append(",")
                 .append(this.role)
+                .append(",")
                 .append(this.rentedPlate)
+                .append("\n")
                 .toString();
     }
 

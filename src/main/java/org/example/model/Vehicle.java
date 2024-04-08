@@ -84,17 +84,17 @@ public class Vehicle {
     public String toCSV() {
         return new StringBuilder()
                 .append(this.getClass().getSimpleName())
-                .append(";")
+                .append(",")
                 .append(this.brand)
-                .append(";")
+                .append(",")
                 .append(this.model)
-                .append(";")
+                .append(",")
                 .append(this.year)
-                .append(";")
+                .append(",")
                 .append(this.price)
-                .append(";")
+                .append(",")
                 .append(this.plate)
-                .append(";")
+                .append(",")
                 .append(this.rent)
                 .toString();
     }

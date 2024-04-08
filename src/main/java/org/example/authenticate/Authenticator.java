@@ -1,13 +1,12 @@
 package org.example.authenticate;
 
 import org.apache.commons.codec.digest.DigestUtils;
-import org.example.dao.jdbc.JdbcUserRepository;
+import org.example.dao.IUserRepository;
 import org.example.model.User;
 
 public class Authenticator {
-    public static User login(String login, String password){
-        JdbcUserRepository jur = JdbcUserRepository.getInstance();
-        User userFromDb = jur.getUser(login);
+    public static User login(String login, String password, IUserRepository userRepository){
+        User userFromDb = userRepository.getUser(login);
         if ( userFromDb!= null && hashPassword(password).equals(userFromDb.getPassword())) {
             return userFromDb;
         }

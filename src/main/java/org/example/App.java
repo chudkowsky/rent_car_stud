@@ -3,6 +3,7 @@ package org.example;
 import org.example.authenticate.Authenticator;
 import org.example.dao.IUserRepository;
 import org.example.dao.IVehicleRepository;
+import org.example.dao.jcsv.UserRepository;
 import org.example.dao.jdbc.JdbcUserRepository;
 import org.example.dao.jdbc.JdbcVehicleRepository;
 import org.example.model.Car;
@@ -15,14 +16,13 @@ import java.util.Scanner;
 public class App {
     public static  User user = null;
     private final Scanner scanner = new Scanner(System.in);
-    private final IUserRepository iur = JdbcUserRepository.getInstance();
+    private final IUserRepository iur = UserRepository.getInstance("src/main/resources/users.csv");
     private final IVehicleRepository ivr = JdbcVehicleRepository.getInstance();
 
     public void run() {
-
+        System.out.println(iur.getUsers());
         System.out.println("LOG IN");
-
-        user = Authenticator.login(scanner.nextLine(),scanner.nextLine());
+        user = Authenticator.login(scanner.nextLine(),scanner.nextLine(),iur);
         if(user!=null){
             System.out.println("logged in!!");
 
